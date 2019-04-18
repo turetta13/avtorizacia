@@ -1,16 +1,16 @@
 <?php
 session_start();
 ?>
-    <html>
-    <body>
-    <form method="POST">
-        <input type="text" name="login">
-        <input type="password" name="password">
-        <input type="submit" value="login" name="">
-        <a href="lang.php">вперед</a>
-    </form>
-    </body>
-    </html>
+<html>
+<body>
+<form method="POST">
+    <input type="text" name="login">
+    <input type="password" name="password">
+    <input type="submit" value="login" name="">
+    <a href="lang.php">вперед</a>
+</form>
+</body>
+</html>
 <?php
 $users =
     [['login' => 'Vasisualiy', 'password' => '12345', 'lang' => 'ru'],
@@ -26,10 +26,20 @@ foreach ($users as $user) {
     }
 }
 if (isset($_SESSION['user']) == $users) {
-    echo "вы авторизованы";
+    echo "вы авторизованы ";
 } else {
     if (isset($_POST['login'])) {
         echo "неверный логин или пароль";
     }
 }
+
+if ($_SESSION['user'] == $user && $user['lang'] == false) {
+    echo $user['login'] . " выберите язые на котром вам удобно общаться ru, ua, it, en";
+    echo ' <form method="GET">
+    <input type="text" name="lang">
+    <input type="submit" value="ok" name="">
+ </form> ';
+    $_SESSION['lang']=$_GET['lang'];
+}
+
 ?>
